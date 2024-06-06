@@ -1,32 +1,32 @@
 [
   {
     "completed": true,
-    "text": "Complete online JavaScript course",
+    "text": "Learn Basics about HTML",
     "id": 1
   },
   {
-    "completed": false,
-    "text": "Jog around the park x3",
+    "completed": true,
+    "text": "Edit the Structure and Styles of a Web App",
     "id": 2
   },
   {
     "completed": false,
-    "text": "10 minutes meditation",
+    "text": "Edit the Structure & Styles of an Angular Web App",
     "id": 3
   },
   {
     "completed": false,
-    "text": "Read for 1 hour",
+    "text": "Include Kendo UI Components to quickly scaffold out UI",
     "id": 4
   },
   {
     "completed": false,
-    "text": "Pick up groceries",
+    "text": "Use the Kendo UI Card Component",
     "id": 5
   },
   {
     "completed": false,
-    "text": "Complete Todo App on Frontend Mentor",
+    "text": "Use the Kendo UI Button",
     "id": 6
   }
 ]
