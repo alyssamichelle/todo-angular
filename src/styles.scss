@@ -52,3 +52,11 @@ body {
   font-weight: 400;
   line-height: 16px;
 }
+
+
+$kendo-color-primary: hotpink;
+$kendo-checkbox-checked-bg: hotpink;
+$kendo-checkbox-border: grey;
+$kendo-font-family: "Tiny5", "Rethink Sans", sans-serif;
+
+@import "@progress/kendo-theme-default/dist/all.scss";

@@ -5,17 +5,18 @@ import { TodosService } from '../services/todos.service';
 import { take } from 'rxjs';
 import { CardModule } from '@progress/kendo-angular-layout';
 import { CheckBoxModule } from '@progress/kendo-angular-inputs';
+import { IconsModule } from '@progress/kendo-angular-icons';
 
 @Component({
   selector: 'app-todo-item',
   standalone: true,
-  imports: [CommonModule, CardModule, CheckBoxModule],
+  imports: [CommonModule, CardModule, CheckBoxModule, IconsModule],
   styles: `
   kendo-card-body {
     display: flex;
     flex-direction: row;
   }
-  kendo-checkbox, .k-button {
+  kendo-checkbox, button {
     margin: 0 10px; 
   }
   .todo-text--completed {
@@ -23,6 +24,11 @@ import { CheckBoxModule } from '@progress/kendo-angular-inputs';
   }
   `,
   template: `
+      <link
+      rel="stylesheet"
+      href="https://unpkg.com/@progress/kendo-font-icons/dist/index.css"
+    />
+
     <kendo-card width="400" class="todo"><kendo-card-body>
       <kendo-checkbox
         class="todo-btn"
@@ -36,9 +42,10 @@ import { CheckBoxModule } from '@progress/kendo-angular-inputs';
       >
         {{ todo.text }}
       </h2>
-      <button kendoButton class="todo-delete-btn" (click)="deleteTodo()">
-        delete
-      </button>
+
+      <button kendoButton (click)="deleteTodo()"><kendo-icon name="trash" size="xxxlarge"></kendo-icon></button>
+
+
     </kendo-card-body></kendo-card>
   `
 })
