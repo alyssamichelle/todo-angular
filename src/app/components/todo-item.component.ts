@@ -15,9 +15,10 @@ import { IconsModule } from '@progress/kendo-angular-icons';
   kendo-card-body {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
   }
-  kendo-checkbox, button {
-    margin: 0 10px; 
+  kendo-checkbox {
+    margin-right: 40px; 
   }
   .todo-text--completed {
     text-decoration-line: line-through;
@@ -43,7 +44,7 @@ import { IconsModule } from '@progress/kendo-angular-icons';
         {{ todo.text }}
       </h2>
 
-      <button kendoButton (click)="deleteTodo()"><kendo-icon name="trash" size="xxxlarge"></kendo-icon></button>
+      <kendo-icon name="trash" size="medium" (click)="deleteTodo()"></kendo-icon>
 
 
     </kendo-card-body></kendo-card>
