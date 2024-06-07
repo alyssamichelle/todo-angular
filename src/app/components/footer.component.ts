@@ -8,14 +8,14 @@ import { CommonModule } from '@angular/common';
   template: `
     <footer class="footer">
       <div class="attribution">
-        Challenge by
+        Starter App by:
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-          >Frontend Mentor</a
-        >. Coded by
-        <a
-          href="https://www.linkedin.com/in/ferdinandogeografo/"
-          target="_blank"
           >Ferdinando Geografo</a
+        >. Rennovated by:
+        <a
+          href="https://www.x.com/alyssanicoll/"
+          target="_blank"
+          >Alyssa Nicoll</a
         >.
       </div>
     </footer>
@@ -57,4 +57,4 @@ import { CommonModule } from '@angular/common';
     }
   `,
 })
-export class FooterComponent {}
+export class FooterComponent { }
