@@ -36,7 +36,7 @@ import { CommonModule } from '@angular/common';
 
     @media (max-width: 40em) {
       .header-theme-btn img {
-        width: 2rem;
+        width: 40px;
       }
     }
   `,

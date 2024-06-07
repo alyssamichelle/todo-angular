@@ -20,11 +20,11 @@ import { take, tap } from 'rxjs';
       class="input-wrapper"
       (ngSubmit)="onSubmit()"
     >
-      <input
+      <!-- <input
         class="todo-checkbox"
         type="checkbox"
         formControlName="completed"
-      />
+      /> -->
       <input
         class="todo-input"
         type="text"
@@ -50,30 +50,6 @@ import { take, tap } from 'rxjs';
       box-shadow: 0 0 0.6rem 0.2rem var(--error-color);
     }
 
-    .todo-checkbox {
-      appearance: none;
-      height: 2.4rem;
-      width: 2.4rem;
-      background: linear-gradient(var(--bg-todo-color), var(--bg-todo-color)) padding-box,
-      linear-gradient(var(--btn-color), var(--btn-color)) border-box;
-      border: 1px solid transparent;
-      border-radius: 50%;
-      outline: none;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .todo-checkbox:hover, .todo-checkbox:focus {
-      background: linear-gradient(var(--bg-todo-color), var(--bg-todo-color)) padding-box,
-      linear-gradient(to bottom right, rgba(85, 221, 255, 1), rgba(192, 88, 243, 1)) border-box;
-    }
-
-    .todo-checkbox:checked {
-      background-image: url("../../assets/images/icon-check.svg"), linear-gradient(to bottom right, rgba(85, 221, 255, 1), rgba(192, 88, 243, 1));
-      background-position: center;
-      background-size: auto;
-      background-repeat: no-repeat;
-    }
 
     .todo-input {
       width: 90%;
