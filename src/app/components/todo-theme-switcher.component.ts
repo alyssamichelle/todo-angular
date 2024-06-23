@@ -43,11 +43,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TodoThemeSwitcherComponent {
   theme = signal<Theme>(
-    (localStorage.getItem('theme') as Theme) ||
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark-mode'
-      : 'light-mode'
-  );
+    (localStorage.getItem('theme') as Theme) || 'light-mode');
 
   constructor() {
     effect(() => {
