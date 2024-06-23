@@ -16,8 +16,7 @@ import { FooterComponent } from './components/footer.component';
   `,
   styles: `
     .main {
-      padding: 7rem 0 11.5rem 0;
-      
+      padding: 40px;
       background-image: var(--bg-desktop-image);
       background-position: top center;
       background-repeat: no-repeat;
@@ -28,7 +27,7 @@ import { FooterComponent } from './components/footer.component';
       min-height: 100vh;
     }
 
-    @media (max-width: 40em) {
+    @media (max-width: 650px) {
       .main {
         padding: 4.8rem 2.4rem;
         background-image: var(--bg-mobile-image);
@@ -36,4 +35,4 @@ import { FooterComponent } from './components/footer.component';
     }
   `,
 })
-export class AppComponent {}
+export class AppComponent { }
