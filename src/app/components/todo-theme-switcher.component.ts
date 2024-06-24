@@ -1,5 +1,5 @@
-import { Component, effect, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-todo-theme-switcher',
@@ -42,8 +42,20 @@ import { CommonModule } from '@angular/common';
   `,
 })
 export class TodoThemeSwitcherComponent {
-  theme = signal<Theme>(
-    (localStorage.getItem('theme') as Theme) || 'light-mode');
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
+
+  private getItem(key: string) {
+    // return (localStorage.getItem(key) as Theme) || 'light-mode';
+    return this.isBrowser ? localStorage.getItem(key) as Theme : 'light-mode';
+  }
+
+  private setItem(key: string, value: any) {
+    // localStorage.setItem(key, value);
+    if (this.isBrowser) localStorage.setItem(key, value);
+  }
+
+  theme = signal<Theme>(this.getItem('theme'));
 
   constructor() {
     effect(() => {
@@ -57,7 +69,7 @@ export class TodoThemeSwitcherComponent {
         document.documentElement.classList.add('dark-mode');
       }
 
-      localStorage.setItem('theme', this.theme());
+      this.setItem('theme', this.theme());
     });
   }
 

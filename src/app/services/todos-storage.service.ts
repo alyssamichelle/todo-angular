@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { Todo } from '../models/todo';
 import { Observable, map, of, tap } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,22 @@ export class TodosStorageService {
   private starterDataSource = '../../assets/data/data.json';
   private dataKey = 'todos';
 
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
+
+  private getItem(key: string) {
+    // return localStorage.getItem(key); // pre ssr
+    return this.isBrowser ? localStorage.getItem(key) : null;
+  }
+
+  private setItem(key: string, value: any) {
+    // localStorage.setItem(key, value); // pre ssr
+    if (this.isBrowser) localStorage.setItem(key, value);
+  }
+
   get todosSource() {
-    const todos = localStorage.getItem(this.dataKey);
+    const todos = this.getItem(this.dataKey);
+
 
     return todos !== null
       ? of(JSON.parse(todos) as Todo[])
@@ -22,7 +37,7 @@ export class TodosStorageService {
 
   getTodos(): Observable<Todo[]> {
     return this.todosSource.pipe(
-      tap((todos) => localStorage.setItem(this.dataKey, JSON.stringify(todos)))
+      tap((todos) => this.setItem(this.dataKey, JSON.stringify(todos)))
     );
   }
 
@@ -33,7 +48,7 @@ export class TodosStorageService {
           ...todo,
           id: todos.length ? todos[todos.length - 1].id! + 1 : 1,
         };
-        localStorage.setItem(this.dataKey, JSON.stringify([...todos, newTodo]));
+        this.setItem(this.dataKey, JSON.stringify([...todos, newTodo]));
         return newTodo;
       })
     );
@@ -43,7 +58,7 @@ export class TodosStorageService {
     return this.todosSource.pipe(
       map((todos) => {
         console.log('todo: ', todo);
-        localStorage.setItem(
+        this.setItem(
           this.dataKey,
           JSON.stringify(todos.map((t) => (t.id === todo.id ? todo : t)))
         );
@@ -56,7 +71,7 @@ export class TodosStorageService {
     return this.todosSource.pipe(
       map((todos) => {
         const deleted: Todo = todos[id - 1];
-        localStorage.setItem(
+        this.setItem(
           this.dataKey,
           JSON.stringify(todos.filter((t) => t.id !== id))
         );
