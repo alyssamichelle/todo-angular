@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { Component, PLATFORM_ID, afterRender, effect, inject, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -42,17 +42,21 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   `,
 })
 export class TodoThemeSwitcherComponent {
-  private platformId = inject(PLATFORM_ID);
-  private isBrowser = isPlatformBrowser(this.platformId);
+  // Find out if you are in the browser or not
+  // private platformId = inject(PLATFORM_ID);
+  // private isBrowser = isPlatformBrowser(this.platformId);
+  contentRef: any;
 
   private getItem(key: string) {
-    // return (localStorage.getItem(key) as Theme) || 'light-mode';
-    return this.isBrowser ? localStorage.getItem(key) as Theme : 'light-mode';
+    return (localStorage.getItem(key) as Theme) || 'light-mode';
+    // Check localstorage only if you are in the browser
+    // return this.isBrowser ? localStorage.getItem(key) as Theme : 'light-mode';
   }
 
   private setItem(key: string, value: any) {
-    // localStorage.setItem(key, value);
-    if (this.isBrowser) localStorage.setItem(key, value);
+    localStorage.setItem(key, value);
+    // Set in localstorage only if you are in the browser
+    // if (this.isBrowser) localStorage.setItem(key, value);
   }
 
   theme = signal<Theme>(this.getItem('theme'));
@@ -71,6 +75,8 @@ export class TodoThemeSwitcherComponent {
 
       this.setItem('theme', this.theme());
     });
+    // after render is a thing
+    // afterRender(() => { console.log('theme ', localStorage.getItem('theme')) });
   }
 
   toggleTheme() {

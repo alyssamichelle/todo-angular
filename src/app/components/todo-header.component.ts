@@ -37,4 +37,4 @@ import { TodoThemeSwitcherComponent } from './todo-theme-switcher.component';
     }
   `,
 })
-export class TodoHeaderComponent {}
+export class TodoHeaderComponent { }
