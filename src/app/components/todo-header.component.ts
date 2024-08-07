@@ -9,7 +9,7 @@ import { TodoThemeSwitcherComponent } from './todo-theme-switcher.component';
   template: `
     <header class="header">
       <h1 class="header-title">TODO</h1>
-      <app-todo-theme-switcher />
+      <!-- <app-todo-theme-switcher /> -->
     </header>
   `,
   styles: `

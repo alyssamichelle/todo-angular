@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, afterRender, effect, inject, signal } from '@angular/core';
+import { Component, PLATFORM_ID, afterNextRender, effect, inject, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -45,7 +45,7 @@ export class TodoThemeSwitcherComponent {
   // Find out if you are in the browser or not
   // private platformId = inject(PLATFORM_ID);
   // private isBrowser = isPlatformBrowser(this.platformId);
-  contentRef: any;
+  // contentRef: any;
 
   private getItem(key: string) {
     return (localStorage.getItem(key) as Theme) || 'light-mode';
@@ -58,6 +58,12 @@ export class TodoThemeSwitcherComponent {
     // Set in localstorage only if you are in the browser
     // if (this.isBrowser) localStorage.setItem(key, value);
   }
+
+  // why tho
+  // afterNextRender() {
+  //   theme.set(signal<Theme>(this.getItem('theme')));
+
+  // }
 
   theme = signal<Theme>(this.getItem('theme'));
 
