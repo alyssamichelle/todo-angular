@@ -17,6 +17,10 @@ import { IconsModule } from '@progress/kendo-angular-icons';
     flex-direction: row;
     align-items: flex-start;
   }
+  .k-card {
+    color: var(--text-color-100);
+    background-color: var(--bg-todo-color);
+  }
   kendo-checkbox {
     margin-right: 40px; 
   }
