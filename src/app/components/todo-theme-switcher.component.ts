@@ -1,5 +1,5 @@
-import { Component, PLATFORM_ID, afterNextRender, effect, inject, signal } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, PLATFORM_ID, afterNextRender, effect, inject, signal, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-todo-theme-switcher',
@@ -43,20 +43,19 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 })
 export class TodoThemeSwitcherComponent {
   // Find out if you are in the browser or not
-  // private platformId = inject(PLATFORM_ID);
-  // private isBrowser = isPlatformBrowser(this.platformId);
-  // contentRef: any;
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
 
   private getItem(key: string) {
-    return (localStorage.getItem(key) as Theme) || 'light-mode';
+    // return (localStorage.getItem(key) as Theme) || 'light-mode';
     // Check localstorage only if you are in the browser
-    // return this.isBrowser ? localStorage.getItem(key) as Theme : 'light-mode';
+    return this.isBrowser ? localStorage.getItem(key) as Theme : 'light-mode';
   }
 
   private setItem(key: string, value: any) {
-    localStorage.setItem(key, value);
+    // localStorage.setItem(key, value);
     // Set in localstorage only if you are in the browser
-    // if (this.isBrowser) localStorage.setItem(key, value);
+    if (this.isBrowser) localStorage.setItem(key, value);
   }
 
   // why tho
@@ -67,16 +66,16 @@ export class TodoThemeSwitcherComponent {
 
   theme = signal<Theme>(this.getItem('theme'));
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private document: Document) {
     effect(() => {
       if (this.theme() === 'light-mode') {
-        document.documentElement.classList.add('light-mode');
-        document.documentElement.classList.remove('dark-mode');
+        this.document.documentElement.classList.add('light-mode');
+        this.document.documentElement.classList.remove('dark-mode');
       }
 
       if (this.theme() === 'dark-mode') {
-        document.documentElement.classList.remove('light-mode');
-        document.documentElement.classList.add('dark-mode');
+        this.document.documentElement.classList.remove('light-mode');
+        this.document.documentElement.classList.add('dark-mode');
       }
 
       this.setItem('theme', this.theme());

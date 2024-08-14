@@ -11,6 +11,7 @@ import { IconsModule } from '@progress/kendo-angular-icons';
   selector: 'app-todo-item',
   standalone: true,
   imports: [CommonModule, CardModule, CheckBoxModule, IconsModule],
+  providers: [],
   styles: `
   kendo-card-body {
     display: flex;
